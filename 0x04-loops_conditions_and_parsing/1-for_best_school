@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# this script prints out a string ten times
+
+for  (( i=0; i<10; i++))
+do
+	echoh "Best School"
+done
+
