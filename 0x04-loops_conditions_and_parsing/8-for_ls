@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This script lists files in the current directory, showing only part name after first dash.
+
+for file in *
+do
+
+	if [ ! -h "$file" ] && [ ! -d "$file" ] && [ ! -f "$file" ]; then
+	continue
+	fi
+	
+	name=$(echo "$file" | cut -d'-' -f2-)
+
+	echo "$name"
+	done
