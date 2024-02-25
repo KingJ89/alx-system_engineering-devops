@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# This script displays "Best School" 10 timess, but for the 9th iteration hi.
+
+jm=0
+
+while [ $jm -lt 10 ]
+do
+
+	if [ $jm -eq 8 ]
+	then
+
+	echo "Best School"
+	echo "Hi"
+
+	else
+	
+	echo "Best School"
+fi
+	((jm++))
+done
