@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#This script displays numbers from 1 to 20 and shows their superstitions
+
+
+jm=1
+
+while [ $jm -le 20 ]
+do
+
+	case $jm in
+	4)
+
+	echo $jm
+	echo "bad luck from China"
+	;;
+	9)
+
+	echo $jm
+	echo "bad luck from Japan"
+	;;
+	17)
+
+	echo $jm
+	echo "bad luck from Italy"
+	;;
+	*)
+	
+	echo $jm
+	;;
+esac
+	((jm++))
+done
