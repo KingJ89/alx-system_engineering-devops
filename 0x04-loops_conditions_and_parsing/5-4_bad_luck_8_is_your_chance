@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# This script displays diff messages depending on the loop iterations.
+
+jm=1
+
+while [ $jm -le 10 ]
+do
+
+	if [ $jm -eq 4 ]; then
+		echo "bad luck"
+	elif [ $jm -eq 8 ]; then
+		echo "good luck"
+	else
+		echo "Best School"
+	fi
+	((jm++))
+done
