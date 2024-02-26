@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This script iterates through all directories in /proc that represent processes. For each process, it checks if the cmdline file exists and if its content contains the word "bash".
+
+for pid _dir in /proc/*/;
+
+do
+
+	pid=$(basename "$pid_dir")
+
+	if [[ -f "$pid_dir/cmdline" && $(< "$pid_dir/cmdline") == *bash* ]]; then
+
+	process_name=$(tr '\0' ' ' < "$pid_dir/cmdline")
+
+	echo "$pid $process_name"
