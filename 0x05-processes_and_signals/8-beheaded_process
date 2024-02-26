@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 this script checks and kills the 7-highlander processes.
 
-pid=$(pgrep -f "7-highlander")
 
-if [ -n "$pid" ]; then
-
-	kill "$pid"
-	echo "Killed process 7-highlander"
-	else
-	echo "Process 7-highlander is not running"
-	fi
+pkill -f -SIGKILL 7-highlander
