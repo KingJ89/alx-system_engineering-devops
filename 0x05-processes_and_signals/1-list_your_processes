@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # this script prints all processes in a user oriented format
 
-echo "USER	PID %CPU %MEM	VSZ	RSS TTY		STAT START	TIME COMMAND"
+echo "USER	PID %CPU %MEM	VSZ	RSS TTY	STAT START TIME COMMAND"
 
-ps -ef
+ps -e -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,comm --forest
