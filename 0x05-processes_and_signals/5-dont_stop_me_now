@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
 # theis script creates an infinite loop but is terminated by the kill process command
 
-	./4-to_infinity_and_beyond &
-
-	pid=$!
-
-	sleep 1
-
-	kill "$pid"
+kill "$(pgrep -f 4-to_infinity_and_beyond)"
