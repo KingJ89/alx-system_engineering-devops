@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Bash script to group visitors by ip and HTTP status code and display occurrences
+
+awk '{count[$1" "$9]++} {for (i in count) print count[i], i}END {print "### TERMINATION SEQUENCE ###"}' apache-access.log | sort -rn
