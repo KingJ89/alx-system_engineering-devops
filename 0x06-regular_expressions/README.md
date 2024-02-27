@@ -1,1 +1,1 @@
-this is a non empty file on the alx project 0x06-regular_expressions By Jan Mutewera
+This script 0-simply_match_school accepts one argument and pass it to a regular expression
