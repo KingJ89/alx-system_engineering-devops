@@ -2,4 +2,4 @@
 # This script matches a ten digit number 
 
 
-puts ARGV[0] if ARGV[0].matc(/^\d{10}$/)
+puts ARGV[0].scan(/^\d{10}$/).join
