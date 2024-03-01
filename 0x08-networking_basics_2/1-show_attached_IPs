@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script Displays all active ip addresses
+
+ifconfig | grep 'inet' | awk '{print $2}'
