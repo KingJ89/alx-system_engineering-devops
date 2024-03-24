@@ -1,0 +1,97 @@
+Design of Secured Three-Server Web Infrastructure for www.foobar.com:
+
+    User Accessing the Website:
+        A user wants to visit www.foobar.com securely by typing the URL into their web browser and hitting enter.
+
+    Firewalls:
+        We have three firewalls deployed to protect our infrastructure from unauthorized access and malicious attacks. They act as barriers between our servers and the internet, monitoring and controlling incoming and outgoing traffic.
+
+    Load Balancer (SSL Termination):
+        The load balancer serves as the entry point for incoming web traffic. It terminates SSL (HTTPS) connections, decrypting the traffic before forwarding it to the web servers. SSL termination at the load balancer level improves performance and reduces the processing burden on the web servers.
+
+    Web Servers (Nginx):
+        Each server has Nginx installed as the front-end web server. Nginx handles HTTPS requests from clients, serving encrypted web pages securely. It also communicates with the application server for dynamic content generation.
+
+    Application Servers:
+        One of the servers is designated as the application server. It hosts the website's code base and processes dynamic content requests. The application server communicates securely with the web server and database.
+
+    Database (MySQL Cluster):
+        We have a MySQL database cluster for data storage and management. The cluster consists of multiple nodes, with at least one node capable of accepting write operations. This ensures redundancy and fault tolerance, minimizing the risk of data loss.
+
+    SSL Certificate:
+        We have an SSL certificate installed on the load balancer to enable HTTPS encryption for www.foobar.com. HTTPS encrypts data transmitted between the user's browser and our servers, ensuring confidentiality and data integrity.
+
+    Monitoring Clients (Sumo Logic):
+        We use monitoring clients, such as Sumo Logic, to collect and analyze data from our servers and infrastructure. Monitoring helps us detect and respond to performance issues, security threats, and other anomalies in real-time.
+
+Issues with the Infrastructure:
+
+    SSL Termination at Load Balancer Level:
+        Terminating SSL at the load balancer level means that decrypted traffic is forwarded to the web servers. This exposes sensitive data within our internal network, potentially compromising security. We need to implement end-to-end encryption to mitigate this risk.
+
+    Single MySQL Server Accepting Writes:
+        Having only one MySQL server capable of accepting write operations creates a single point of failure. If this server fails, it could result in data loss or service downtime. We should consider implementing database replication or clustering for high availability and fault tolerance.
+
+    Uniformity of Server Components:
+        Deploying servers with identical components (database, web server, and application server) may lead to a lack of diversity in our infrastructure. If a common vulnerability affects all servers simultaneously, it could result in widespread service disruption. Introducing diversity in server components can help mitigate this risk.
+
+
+                       +-------------+
+                       | User Access |
+                       | www.foobar. |
+                       |   com       |
+                       +------+------+
+                              |
+                              v
+                    +-------------+
+                    |   Firewalls |
+                    |  (3 servers) |
+                    +------+------+
+                           |
+                           v
+            +---------------------------+
+            | Load Balancer (SSL Termination)|
+            |          (Nginx)           |
+            +-------------|-------------+
+                          |
+              +-----------+-----------+
+              v                       v
+    +-------------+           +-------------+
+    | Web Server  |           | Web Server  |
+    |  (Nginx)    |           |  (Nginx)    |
+    +------+------|           +------+------+
+           |                           |
+           |                           |
+           v                           v
+    +-------------+           +-------------+
+    | Application |           | Application |
+    |   Server    |           |   Server    |
+    +------+------+           +------+------+
+           |                           |
+           |                           |
+           v                           v
+    +-------------+           +-------------+
+    |   Database  |           |   Database  |
+    |   (MySQL)   |           |   (MySQL)   |
+    +-------------+           +-------------+
+
+
+Flow:
+
+    User Access: The flow starts when a user accesses www.foobar.com in their web browser.
+    Firewalls: The user's request passes through the firewalls, which act as barriers to protect the servers from unauthorized access and malicious attacks. Each server is protected by its own firewall, enhancing security.
+    Load Balancer (SSL Termination): The load balancer, powered by Nginx, receives the encrypted HTTPS requests from users. It decrypts the traffic (SSL termination) to access the content and forwards the requests to the web servers.
+    Web Servers (Nginx): The web servers receive requests from the load balancer, process them, and send back responses to the users. They host the website's static content and serve as the entry point for incoming traffic.
+    Application Servers: The application servers execute the website's codebase, handle dynamic content requests, interact with the database, and generate personalized web pages. They enhance the website's functionality and responsiveness.
+    Database (MySQL): The MySQL database stores and manages the website's data, such as user accounts, posts, and other information. It ensures data integrity, reliability, and availability.
+
+Explanation:
+
+    Firewalls: Added for enhanced security by filtering incoming and outgoing network traffic to protect the servers from potential threats.
+    SSL Termination: Necessary for serving traffic over HTTPS, ensuring secure communication between users and the website by encrypting data transmission.
+    Monitoring Clients (Data Collectors): Used for monitoring the performance, availability, and health of the servers and services in real-time to detect and address issues promptly.
+    SSL Termination at Load Balancer: SSL termination at the load balancer introduces a single point of failure and increases the load on the load balancer, affecting scalability and reliability.
+    Single MySQL Server for Writes: Having only one MySQL server capable of accepting writes poses a risk of data loss or downtime if the server fails or becomes overwhelmed.
+    Identical Server Components: Using servers with the same components (database, web server, and application server) increases the risk of cascading failures and lacks diversity, impacting fault tolerance and resilience.
+
+https://drive.google.com/file/d/1KdGizvOUr7HM_sWNbsFW3yz4S84ivLO0/view?usp=drive_link
