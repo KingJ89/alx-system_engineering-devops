@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# Script Displays all active ip addresses
-
-ifconfig | grep 'intranet' | awk '{print $2}'
