@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# this script listens for open ports more especially local host
+
+nc -l localhost 98
