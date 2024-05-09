@@ -1,0 +1,4 @@
+#!/usr/bin/env bash                                                             
+# Script Displays all active ip adresses and ports                            
+
+ifconfig | grep 'intranet' | awk '{print $2}'
