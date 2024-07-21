@@ -1,0 +1,90 @@
+An Expository Inquiry Into The Effects Of What Happens When You Type www.google.com Into Your Browser And Press Enter.
+
+Table of Contents
+    1. Introduction
+    2. DNS Lookup
+        ◦ Diagram: DNS Lookup Process
+    3. TCP/IP Connection
+        ◦ Diagram: TCP/IP Handshake
+    4. HTTPS Request
+        ◦ Diagram: HTTPS Request Flow
+    5. Server Response
+        ◦ Diagram: Server Response Flow
+    6. Rendering the Page
+        ◦ Diagram: Browser Rendering Process
+    7. Conclusion
+
+Introduction
+Imagine this: You’re sitting at your desk, fingers hovering over the keyboard, and you type in "www.google.com" and hit enter. Instantly, you’re whisked away on a digital journey that happens in milliseconds. But what really goes on behind the scenes? Let's dive into the technical marvel that is the internet, explained in a way that’s as smooth as a good beat drop in one of my hip-hop tracks.
+
+DNS Lookup
+When you type "www.google.com" and press enter, your computer doesn't understand "google.com" as is. It needs an IP address to locate the website, much like how you need an address to visit a friend. This is where the Domain Name System (DNS) comes in, acting as the internet's phonebook.
+Diagram: DNS Lookup Process
+This picture was supplied by https://www.javatpoint.com/dns-lookup Credits and many thanks to their whole team
+
+    1. Querying the Local DNS Cache:
+        ◦ Your browser first checks its local cache to see if it already knows the IP address for www.google.com. This is the fastest lookup because it's stored locally on your computer.
+    2. Querying the Recursive Resolver:
+        ◦ If the IP isn’t cached, the query goes to your Internet Service Provider’s (ISP) DNS resolver, which acts as an intermediary to find the correct IP address.
+    3. Querying Root Servers:
+        ◦ The ISP’s resolver sends a query to one of the root DNS servers, which handles the top-level domain name servers (TLD servers).
+    4. Querying TLD Servers:
+        ◦ The root server points to the .com TLD server, which further narrows down the location of the domain.
+    5. Querying Authoritative DNS Servers:
+        ◦ The TLD server directs the query to Google’s authoritative DNS servers, which hold the definitive mapping of domain names to IP addresses.
+    6. Returning the IP Address:
+        ◦ Finally, Google's DNS server responds with the IP address for www.google.com, and this information is sent back to your computer.
+
+TCP/IP Connection
+Now that your browser knows Google's IP address, it needs to establish a connection. This happens using the Transmission Control Protocol (TCP) and the Internet Protocol (IP), often referred to together as TCP/IP.
+Diagram: TCP/IP Handshake
+Picture credits courtesy of https://www.geeksforgeeks.org/tcp-3-way-handshake-process/
+
+    1. SYN (Synchronize):
+        ◦ Your computer sends a SYN packet to Google's server to initiate the connection. This packet includes a random sequence number that starts the conversation.
+    2. SYN-ACK (Synchronize-Acknowledge):
+        ◦ Google's server responds with a SYN-ACK packet, acknowledging the receipt of the SYN packet and including its own sequence number to continue the conversation.
+    3. ACK (Acknowledge):
+        ◦ Your computer sends an ACK packet back to the server, confirming that it has received the SYN-ACK packet. This completes the three-way handshake and establishes a TCP connection.
+
+HTTPS Request
+With the connection set up, your browser sends an HTTP request to Google's server. But wait, there's more—since the request is sent over HTTPS (Hypertext Transfer Protocol Secure), it's encrypted for security.
+Diagram: HTTPS Request Flow
+Picture credits courtesy of https://www.linkedin.com/pulse/http-request-flow-anasi-uchenna/
+
+    1. TLS Handshake:
+        ◦ A Transport Layer Security (TLS) handshake occurs to establish a secure connection. This involves the exchange of keys and certificates to ensure both parties are who they claim to be and to encrypt the data being transferred.
+    2. Request Sent:
+        ◦ Your browser sends an HTTPS request to Google’s server. This request includes details about the desired resource (in this case, the Google homepage), along with additional headers and metadata.
+    3. Server Processing:
+        ◦ Google's server processes the request, which may involve querying databases, retrieving static files, and generating dynamic content.
+
+Server Response
+Google’s server responds with the requested data, which includes HTML, CSS, JavaScript, and other resources necessary to render the webpage.
+Diagram: Server Response Flow
+Picture credits go to https://www.linkedin.com/pulse/request-response-diagram-internet-andres-castaneda/
+
+    1. Data Packets:
+        ◦ The server sends the data back to your computer in small, manageable packets. This is done to ensure efficient transmission over the network.
+    2. Reassembling Data:
+        ◦ Your browser reassembles these packets into a coherent web page. This involves checking the sequence numbers to ensure all packets have been received and reordering them if necessary.
+    3. Rendering Begins:
+        ◦ The rendering process starts as soon as the first chunks of data arrive. The browser doesn’t wait for all packets to arrive before starting to render the page.
+
+Rendering the Page
+Finally, your browser takes the received data and starts rendering the page. This involves parsing the HTML, applying CSS for styling, and executing JavaScript for dynamic content.
+Diagram: Browser Rendering Process
+Credits coutesy of https://stackoverflow.com/questions/62104464/how-does-a-browser-render-the-actual-pixels
+
+    1. Parsing HTML:
+        ◦ The browser parses the HTML to construct the Document Object Model (DOM). This is a tree-like structure that represents the content and structure of the web page.
+    2. Applying CSS:
+        ◦ CSS rules are applied to the DOM to style the elements. This involves calculating the layout, colors, fonts, and other visual aspects.
+    3. Executing JavaScript:
+        ◦ JavaScript is executed to add interactivity and dynamic behavior to the web page. This can include things like form validation, animations, and updating content without refreshing the page.
+    4. Final Rendering:
+        ◦ The browser renders the final, interactive webpage that you see. This involves combining the DOM, CSSOM (CSS Object Model), and JavaScript to display the complete page.
+
+Conclusion
+And there you have it—what seems like a simple act of pressing enter is actually a sophisticated dance of digital communication, encryption, and rendering. It’s a journey that takes place in the blink of an eye, yet involves countless intricate steps and technologies working in perfect harmony. As a tech enthusiast and lyricist, I find this process both fascinating and inspiring, much like crafting a perfect rhyme or building a flawless beat.
+

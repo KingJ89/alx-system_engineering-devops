@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 #script creates new server
 # Function to revert changes
-revert_changes() {
-    sudo cp /etc/hosts.backup /etc/hosts
-    rm /etc/hosts.backup
-    echo "Reverted changes. localhost now resolves to 127.0.0.1 and facebook.com resolves to its original IP."
+
+revert_changes()
+{
+sudo cp /etc/hosts.backup /etc/hosts
+rm /etc/hosts.backup
+echo "Reverted changes. localhost now resolves to 127.0.0.1 and facebook.com resolves to its original IP."
 }
-
 sudo cp /etc/hosts /etc/hosts.backup
-
 echo "127.0.0.2 localhost" > ~/hosts.new
 echo "8.8.8.
-
