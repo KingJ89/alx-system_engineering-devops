@@ -1,0 +1,18 @@
+echo -e "Updating\n"
+
+sudo apt-get update
+echo -e "Installing UFW\n"
+sudo apt-get install -y ufw
+echo -e "configuring UFW...\n"
+# deny all ports
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+# Allow Specific Ports
+sudo ufw allow 22
+sudo ufw allow 443
+sudo ufw allow 80
+
+sudo ufw enable #enables firewall
+
+echo -e "Process Completed Have a Great day yours Jan.\n"
