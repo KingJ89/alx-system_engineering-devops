@@ -10,8 +10,7 @@ if __name__ == "__main__":
 
     # Get user info
     user = requests.get(f"{url}users/{sys.argv[1]}").json()
-
-     todos = requests.get(f"{url}todos", params={"userId": sys.argv[1]}).json()
+    todos = requests.get(f"{url}todos", params={"userId": sys.argv[1]}).json()
 
     # Filter completed tasks
     completed = [t["title"] for t in todos if t["completed"]]
