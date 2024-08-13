@@ -1,8 +1,10 @@
 #!/usr/bin/python3
+"""Reddit Subreddit Query"""
 
 import requests
 
-def display_top_ten_posts(subreddit):
+def top_ten(subreddit):
+    """Fetch and print titles of the first 10 hot posts from a subreddit"""
 
     # Construct the Reddit API endpoint URL
     api_url = f"https://www.reddit.com/r/{subreddit}/hot.json"
@@ -22,12 +24,7 @@ def display_top_ten_posts(subreddit):
                 print(f"{index + 1}: {post.get('data', {}).get('title', 'No Title')}")
         else:
             # Handle cases where the request was not successful
-            print("Unable to fetch posts.")
+            print("None")
     except requests.RequestException as e:
         # Catch and handle any exceptions during the request
         print(f"An error occurred: {e}")
-
-# Example usage
-if __name__ == "__main__":
-    display_top_ten_posts("example_subreddit")
-
