@@ -3,11 +3,12 @@
 
 import requests
 
+
 def top_ten(subreddit):
     """Fetch and print titles of the first 10 hot posts from a subreddit"""
 
     # Construct the Reddit API endpoint URL
-    api_url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    api_url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
 
     # Define a custom User-Agent to prevent request rate limiting
     headers = {'User-Agent': 'JanYayaBot 1.0'}
@@ -20,11 +21,19 @@ def top_ten(subreddit):
         if response.status_code == 200:
             # Extract and print the titles of the top 10 hot posts
             posts = response.json().get('data', {}).get('children', [])
-            for index, post in enumerate(posts[:10]):
-                print(f"{index + 1}: {post.get('data', {}).get('title', 'No Title')}")
+            if posts:
+                for post in posts:
+                    print(post.get('data', {}).get('title', 'No Title'))
+            else:
+                print("None")
         else:
             # Handle cases where the request was not successful
             print("None")
-    except requests.RequestException as e:
+    except requests.RequestException:
         # Catch and handle any exceptions during the request
-        print(f"An error occurred: {e}")
+        print("None")
+
+
+if __name__ == "__main__":
+    subreddit_name = "programming"
+    top_ten(subreddit_name)
