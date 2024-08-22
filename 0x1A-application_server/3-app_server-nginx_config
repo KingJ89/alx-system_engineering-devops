@@ -1,0 +1,76 @@
+##
+# Refer to the following URLs for a solid understanding of Nginx configuration:
+# https://www.nginx.com/resources/wiki/start/
+# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+# https://wiki.debian.org/Nginx/DirectoryStructure
+#
+# This file is typically kept in sites-available/ and referenced in sites-enabled/.
+# It automatically loads configuration files provided by other applications (e.g., Drupal, WordPress).
+##
+
+# Default server configuration
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    # Redirect example
+    rewrite ^/redirect_me https://www.youtube.com/ permanent;
+
+    # Proxy to Flask app running on Gunicorn
+    location /airbnb-onepage/ {
+        proxy_pass http://localhost:5000;
+    }
+
+    # Serve static files
+    location /hbnb_static/ {
+        alias /data/web_static/current/;
+    }
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    # Custom 404 page
+    error_page 404 /404.html;
+    location = /404.html {
+        internal;
+    }
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    # SSL configuration examples (uncomment to use)
+    #
+    # listen 443 ssl default_server;
+    # listen [::]:443 ssl default_server;
+    # include snippets/snakeoil.conf;
+
+    # PHP processing via FastCGI (uncomment to use)
+    #
+    # location ~ \.php$ {
+    #     include snippets/fastcgi-php.conf;
+    #     fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+    # }
+
+    # Deny access to .htaccess files (uncomment to use)
+    #
+    # location ~ /\.ht {
+    #     deny all;
+    # }
+}
+
+# Example Virtual Host configuration (uncomment to use)
+#
+# server {
+#     listen 80;
+#     listen [::]:80;
+#     server_name example.com;
+#     root /var/www/example.com;
+#     index index.html;
+#     location / {
+#         try_files $uri $uri/ =404;
+#     }
+# }
+
